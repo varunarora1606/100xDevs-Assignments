@@ -19,7 +19,7 @@ export class AdopterData extends Component {
             <td>{dataInfo.petName}</td>
             <td>{dataInfo.petType}</td>
             <td>{dataInfo.breed}</td>
-            <td>{dataInfo.yourName}</td>
+            <td>{dataInfo.adopterName}</td>
             <td>{dataInfo.email}</td>
             <td>{dataInfo.phone}</td>
           </tr>
