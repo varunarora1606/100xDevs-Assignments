@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/auth.context.jsx";
 
-const AppBar = () => {
-  const { name, isLoggedIn, setIsLoggedIn, nameRef } = useContext(AuthContext);
+const AppBar = ({ name, isLoggedIn, setIsLoggedIn, nameRef }) => {
+
+  const context = useContext(AuthContext)
+
   return (
     <header
       style={{
@@ -19,9 +21,9 @@ const AppBar = () => {
         Auth System Demo
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
-        {isLoggedIn ? (
+        {(context?.isLoggedIn ?? isLoggedIn) ? (
           <>
-            <h3>Welcome, {name}!</h3>
+            <h3>Welcome, {context?.name ?? name}!</h3>
             <button
               style={{
                 fontSize: "1rem",
@@ -30,7 +32,10 @@ const AppBar = () => {
                 border: "0px",
                 margin: "0 2vw",
               }}
-              onClick={() => setIsLoggedIn(false)}
+              onClick={() => {
+                context?.setIsLoggedIn(false) ??
+                  setIsLoggedIn(false);
+              }}
             >
               Logout
             </button>
@@ -43,7 +48,10 @@ const AppBar = () => {
               borderRadius: "10px",
               border: "0px",
             }}
-            onClick={() => nameRef.current.focus()}
+            onClick={() =>
+              context?.nameRef.current.focus() ??
+              nameRef.current.focus()
+            }
           >
             Login
           </button>
